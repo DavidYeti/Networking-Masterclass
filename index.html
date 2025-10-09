@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Chosen Palette: Calm Corporate -->
+    <!-- Application Structure Plan: The SPA is designed as a linear, guided masterclass. The structure mirrors the 4-step blueprint from the source presentation, using a top navigation stepper to guide the user sequentially through each module. This was chosen because the source material is a pedagogical framework, and a step-by-step flow is the most intuitive and effective way for a user to learn a process. Each module's key points are presented as interactive, clickable cards that expand to reveal more information, encouraging active engagement and breaking down the content into digestible pieces. -->
+    <!-- Visualization & Content Choices: The source report is entirely textual and conceptual, containing no quantitative data. Therefore, traditional charts are not applicable. Instead, core concepts are presented using interactive HTML/CSS cards. Report Info (e.g., "M1: DITCHING THE 'ASK' MINDSET") -> Goal (Inform/Organize) -> Presentation (Interactive Card with Title & Expandable Detail) -> Interaction (Click to toggle detail visibility) -> Justification (Encourages user engagement, breaks down the blueprint into manageable steps, and creates a more dynamic learning experience than a static page) -> Method (Vanilla JS, Tailwind CSS). Icons (Unicode characters) add visual context to each step. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Effortless Corporate Networking Blueprint</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .active-nav {
+            background-color: #0d9488;
+            color: white;
+            border-color: #0d9488;
+        }
+        .nav-item {
+            transition: all 0.3s ease-in-out;
+        }
+        .content-card {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+        .details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+        }
+        .details.open {
+            max-height: 500px;
+            transition: max-height 0.7s ease-in;
+        }
+        .icon-container {
+            font-size: 1.5rem;
+            line-height: 2rem;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f0fdfa;
+            color: #0d9488;
+        }
+    </style>
+</head>
+<body class="text-slate-700">
+
+    <div class="container mx-auto max-w-6xl px-4 py-8 sm:py-12">
+
+        <header class="text-center mb-10 sm:mb-16">
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-800 tracking-tight">Unlock Effortless Corporate Networking</h1>
+            <p class="mt-4 max-w-3xl mx-auto text-lg text-slate-600">Catapult your career to new heights with this 4-step blueprint. Stop chasing contacts and start building genuine, profitable connections today.</p>
+        </header>
+
+        <nav id="stepper-nav" class="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4 md:space-x-8 mb-12">
+            <button data-target="module-1" class="nav-item w-full sm:w-auto text-center px-4 py-3 border-2 border-slate-300 rounded-full font-semibold text-slate-600 hover:bg-teal-500 hover:text-white hover:border-teal-500 active-nav">
+                1. The Mindset Shift
+            </button>
+            <div class="text-slate-300 hidden sm:block">→</div>
+            <button data-target="module-2" class="nav-item w-full sm:w-auto text-center px-4 py-3 border-2 border-slate-300 rounded-full font-semibold text-slate-600 hover:bg-teal-500 hover:text-white hover:border-teal-500">
+                2. Strategic Mapping
+            </button>
+            <div class="text-slate-300 hidden sm:block">→</div>
+            <button data-target="module-3" class="nav-item w-full sm:w-auto text-center px-4 py-3 border-2 border-slate-300 rounded-full font-semibold text-slate-600 hover:bg-teal-500 hover:text-white hover:border-teal-500">
+                3. Connection Formula
+            </button>
+            <div class="text-slate-300 hidden sm:block">→</div>
+            <button data-target="module-4" class="nav-item w-full sm:w-auto text-center px-4 py-3 border-2 border-slate-300 rounded-full font-semibold text-slate-600 hover:bg-teal-500 hover:text-white hover:border-teal-500">
+                4. Maintenance & Leverage
+            </button>
+        </nav>
+
+        <main id="main-content">
+            <section id="module-1" class="module-content">
+                <div class="text-center mb-10">
+                    <h2 class="text-2xl font-bold text-teal-700">Module 1: The Mindset Shift</h2>
+                    <p class="mt-2 text-lg text-slate-600 max-w-2xl mx-auto">This module reframes networking from a transactional chore to a relationship-driven opportunity. By shifting your perspective from "taking" to "giving," you'll build more authentic and lasting connections. Click each card below to explore the core concepts.</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="content-card bg-white rounded-xl shadow-lg p-6 cursor-pointer">
+                        <div class="flex items-center space-x-4">
+                            <div class="icon-container">🎯</div>
+                            <h3 class="text-lg font-semibold text-slate-800">Ditching the "Ask" Mindset</h3>
+                        </div>
+                        <div class="details mt-4 text-slate-600">
+                           <p>The transactional approach kills authenticity. Leading with a request, no matter how small, puts the other person on the defensive. We'll show you how to start with a "give" to build immediate rapport and trust, turning you into a value source, not a resource taker.</p>
+                        </div>
+                    </div>
+                    <div class="content-card bg-white rounded-xl shadow-lg p-6 cursor-pointer">
+                        <div class="flex items-center space-x-4">
+                            <div class="icon-container">🤝</div>
+                            <h3 class="text-lg font-semibold text-slate-800">The Value Exchange Rule</h3>
+                        </div>
+                        <div class="details mt-4 text-slate-600">
+                           <p>Before you connect, you must define your own value. This section helps you map out what you can offer—from insights to resources, connections, or genuine appreciation—making you a valuable contact from day one.</p>
+                        </div>
+                    </div>
+                    <div class="content-card bg-white rounded-xl shadow-lg p-6 cursor-pointer">
+                         <div class="flex items-center space-x-4">
+                            <div class="icon-container">📈</div>
+                            <h3 class="text-lg font-semibold text-slate-800">Return on Relationship (R.O.R.)</h3>
+                        </div>
+                        <div class="details mt-4 text-slate-600">
+                            <p>Stop tracking business cards. We introduce a new metric focused on the depth and quality of your professional relationships, which is the true long-term driver of career success. Deep relationships foster trust and lead to sponsorship.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="module-2" class="module-content hidden">
+                <div class="text-center mb-10">
+                    <h2 class="text-2xl font-bold text-teal-700">Module 2: Strategic Mapping</h2>
+                    <p class="mt-2 text-lg text-slate-600 max-w-2xl mx-auto">Move beyond random event attendance to strategically identify and target the *right* people and places. This section teaches you how to focus your efforts for maximum impact by connecting with individuals who can genuinely advance your career.</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                     <div class="content-card bg-white rounded-xl shadow-lg p-6 cursor-pointer">
+                        <div class="flex items-center space-x-4">
+                            <div class="icon-container">📝</div>
+                            <h3 class="text-lg font-semibold text-slate-800">Identifying Your Top 10 Targets</h3>
+                        </div>
+                        <div class="details mt-4 text-slate-600">
+                            <p>Quality over quantity. Learn how to create a curated, focused list of internal and external leaders, potential mentors, and sponsors who truly align with your goals and can help you grow.</p>
+                        </div>
+                    </div>
+                     <div class="content-card bg-white rounded-xl shadow-lg p-6 cursor-pointer">
+                        <div class="flex items-center space-x-4">
+                            <div class="icon-container">🚪</div>
+                            <h3 class="text-lg font-semibold text-slate-800">Locating the "Invisible Room"</h3>
+                        </div>
+                        <div class="details mt-4 text-slate-600">
+                            <p>The most valuable connections aren't made at crowded conferences. We reveal where decisions are really made and high-value relationships are built, such as non-mandatory committees, niche industry forums, and volunteer boards.</p>
+                        </div>
+                    </div>
+                     <div class="content-card bg-white rounded-xl shadow-lg p-6 cursor-pointer">
+                        <div class="flex items-center space-x-4">
+                            <div class="icon-container">💡</div>
+                            <h3 class="text-lg font-semibold text-slate-800">The "Micro-Touch" Strategy</h3>
+                        </div>
+                         <div class="details mt-4 text-slate-600">
+                            <p>Use subtle, high-value engagements to show you are paying attention and understand their work—without demanding time. A well-placed, insightful comment on LinkedIn or a quick internal email referencing a recent project shows you're engaged and informed.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="module-3" class="module-content hidden">
+                 <div class="text-center mb-10">
+                    <h2 class="text-2xl font-bold text-teal-700">Module 3: The Connection Formula</h2>
+                    <p class="mt-2 text-lg text-slate-600 max-w-2xl mx-auto">This module provides the exact scripts and questions to eliminate awkward small talk and initiate meaningful conversations that leave a lasting, positive impression. Learn how to move beyond generic questions to create genuine connections quickly.</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="content-card bg-white rounded-xl shadow-lg p-6 cursor-pointer">
+                        <div class="flex items-center space-x-4">
+                             <div class="icon-container">💬</div>
+                            <h3 class="text-lg font-semibold text-slate-800">The 3-Minute Connection Formula</h3>
+                        </div>
+                        <div class="details mt-4 text-slate-600">
+                           <p>Use the **S.E.T. Opener** at networking events or in quick office interactions:</p>
+                           <ul class="list-disc list-inside mt-2 space-y-1">
+                                <li><strong>Signal Attention:</strong> Acknowledge them with eye contact.</li>
+                                <li><strong>Engagement:</strong> Ask an open, non-generic question.</li>
+                                <li><strong>Topic:</strong> Pivot to a specific professional topic of mutual interest.</li>
+                           </ul>
+                        </div>
+                    </div>
+                    <div class="content-card bg-white rounded-xl shadow-lg p-6 cursor-pointer">
+                        <div class="flex items-center space-x-4">
+                             <div class="icon-container">❓</div>
+                            <h3 class="text-lg font-semibold text-slate-800">High-Leverage Questions</h3>
+                        </div>
+                        <div class="details mt-4 text-slate-600">
+                            <p>Move beyond "What do you do?" to spark real conversation. Examples include:</p>
+                             <ul class="list-disc list-inside mt-2 space-y-1">
+                                <li>"What is the biggest challenge your team is focused on solving right now?"</li>
+                                <li>"What emerging trend are you most excited about in our industry?"</li>
+                                <li>"What's one piece of advice you'd give your younger self about navigating this company?"</li>
+                           </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="module-4" class="module-content hidden">
+                 <div class="text-center mb-10">
+                    <h2 class="text-2xl font-bold text-teal-700">Module 4: Maintenance & Leverage</h2>
+                    <p class="mt-2 text-lg text-slate-600 max-w-2xl mx-auto">Building the relationship is just the beginning. This final module teaches you how to nurture your network over the long term and convert trusted connections into powerful advocates who will champion your career growth.</p>
+                </div>
+                 <div class="grid md:grid-cols-2 gap-8">
+                    <div class="content-card bg-white rounded-xl shadow-lg p-6 cursor-pointer">
+                        <div class="flex items-center space-x-4">
+                            <div class="icon-container">🔄</div>
+                            <h3 class="text-lg font-semibold text-slate-800">The 90-Day Nurture Cycle</h3>
+                        </div>
+                        <div class="details mt-4 text-slate-600">
+                           <p>Don't let relationships die. Stay connected without being annoying through non-transactional check-ins. Systemize your follow-up with a simple 90-day calendar reminder for key contacts to send a low-pressure, high-value touchpoint like a relevant article or a note of congratulations.</p>
+                        </div>
+                    </div>
+                    <div class="content-card bg-white rounded-xl shadow-lg p-6 cursor-pointer">
+                        <div class="flex items-center space-x-4">
+                            <div class="icon-container">🏆</div>
+                            <h3 class="text-lg font-semibold text-slate-800">Converting Connections to Sponsors</h3>
+                        </div>
+                        <div class="details mt-4 text-slate-600">
+                           <p>Understand the key distinction: A **Mentor** gives advice, but a **Sponsor** uses their influence and political capital to advocate for you behind closed doors. You earn sponsorship not by asking, but by consistently demonstrating value, executing reliably, and building trust through your strategic, low-pressure networking efforts.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <footer class="text-center mt-16 border-t border-slate-200 pt-8">
+            <h3 class="text-xl font-bold text-slate-800">Begin Your Blueprint Today</h3>
+            <p class="mt-2 max-w-2xl mx-auto text-slate-600">Don't wait for the next event. Find one person from your "Top 10" list and send them a "Micro-Touch" message today. The journey to a powerful network starts with a single, valuable interaction.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navButtons = document.querySelectorAll('.nav-item');
+            const contentSections = document.querySelectorAll('.module-content');
+
+            navButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const targetId = button.dataset.target;
+
+                    navButtons.forEach(btn => btn.classList.remove('active-nav'));
+                    button.classList.add('active-nav');
+
+                    contentSections.forEach(section => {
+                        if (section.id === targetId) {
+                            section.classList.remove('hidden');
+                        } else {
+                            section.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+
+            const contentCards = document.querySelectorAll('.content-card');
+            contentCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const details = card.querySelector('.details');
+                    if (details) {
+                        details.classList.toggle('open');
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
